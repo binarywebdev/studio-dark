@@ -79,12 +79,24 @@ get_template_part( 'template-parts/nav' );
 
 			<div class="work-slider">
 				<div class="work-track" id="workTrack">
-					<article class="wcard"><div class="wc-art a1"></div><span class="wc-num">01</span><div class="wc-meta"><span>Branding</span><b>Luminos</b></div></article>
-					<article class="wcard"><div class="wc-art a2"></div><span class="wc-num">02</span><div class="wc-meta"><span>Web · Motion</span><b>Cinemak</b></div></article>
-					<article class="wcard"><div class="wc-art a3"></div><span class="wc-num">03</span><div class="wc-meta"><span>Identity</span><b>Nova</b></div></article>
-					<article class="wcard"><div class="wc-art a2"></div><span class="wc-num">04</span><div class="wc-meta"><span>UI/UX</span><b>Volta</b></div></article>
-					<article class="wcard"><div class="wc-art a3"></div><span class="wc-num">05</span><div class="wc-meta"><span>E-commerce</span><b>Forma</b></div></article>
-					<article class="wcard"><div class="wc-art a1"></div><span class="wc-num">06</span><div class="wc-meta"><span>Design System</span><b>Aura</b></div></article>
+					<?php if ( function_exists( 'have_rows' ) && have_rows( 'work_items', 'option' ) ) : ?>
+						<?php
+						$wc_num = 0;
+						while ( have_rows( 'work_items', 'option' ) ) :
+							the_row();
+							++$wc_num;
+							$wc_art = get_sub_field( 'art' ) ? get_sub_field( 'art' ) : 'a1';
+							?>
+							<article class="wcard"><div class="wc-art <?php echo esc_attr( $wc_art ); ?>"></div><span class="wc-num"><?php echo esc_html( sprintf( '%02d', $wc_num ) ); ?></span><div class="wc-meta"><span><?php echo esc_html( (string) get_sub_field( 'category' ) ); ?></span><b><?php echo esc_html( (string) get_sub_field( 'title' ) ); ?></b></div></article>
+						<?php endwhile; ?>
+					<?php else : ?>
+						<article class="wcard"><div class="wc-art a1"></div><span class="wc-num">01</span><div class="wc-meta"><span>Branding</span><b>Luminos</b></div></article>
+						<article class="wcard"><div class="wc-art a2"></div><span class="wc-num">02</span><div class="wc-meta"><span>Web · Motion</span><b>Cinemak</b></div></article>
+						<article class="wcard"><div class="wc-art a3"></div><span class="wc-num">03</span><div class="wc-meta"><span>Identity</span><b>Nova</b></div></article>
+						<article class="wcard"><div class="wc-art a2"></div><span class="wc-num">04</span><div class="wc-meta"><span>UI/UX</span><b>Volta</b></div></article>
+						<article class="wcard"><div class="wc-art a3"></div><span class="wc-num">05</span><div class="wc-meta"><span>E-commerce</span><b>Forma</b></div></article>
+						<article class="wcard"><div class="wc-art a1"></div><span class="wc-num">06</span><div class="wc-meta"><span>Design System</span><b>Aura</b></div></article>
+					<?php endif; ?>
 				</div>
 			</div>
 

@@ -65,3 +65,8 @@ function studio_dark_chart_canvas() {
 	echo '<canvas id="chartBg" aria-hidden="true"></canvas>';
 }
 add_action( 'wp_footer', 'studio_dark_chart_canvas' );
+
+/**
+ * Secure Custom Fields — определения полей контента (модель C).
+ */
+require get_theme_file_path( 'inc/scf-fields.php' );
