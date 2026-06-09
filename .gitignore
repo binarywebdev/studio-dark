@@ -1,0 +1,7 @@
+# OS / editor
+.DS_Store
+Thumbs.db
+*.log
+
+# WP-specific (тема не тащит чужое)
+node_modules/
