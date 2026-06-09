@@ -1,10 +1,10 @@
 <?php
 /**
- * Secure Custom Fields — определения полей (модель C).
+ * Тема: настройка CPT и редактора под модель C (SCF).
  *
- * Структура полей живёт ЗДЕСЬ (git) через acf_add_local_field_group().
- * Значения (контент) живут в БД и правятся в админке.
- * SCF — форк ACF Pro, поэтому используются acf_* функции (с guard'ами).
+ * Структура полей (Flexible Content главной + поля проекта) импортируется
+ * через SCF (JSON, см. scf-import.json) и живёт в БД/acf-json — НЕ здесь.
+ * Здесь только то, что относится к коду темы: тип записи и снятие редактора.
  *
  * @package StudioDark
  */
@@ -14,88 +14,61 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * Options-страница «Главная» — держит контент лендинга.
+ * CPT «Проекты» (портфолио).
  */
 add_action(
-	'acf/init',
+	'init',
 	function () {
-		if ( function_exists( 'acf_add_options_page' ) ) {
-			acf_add_options_page(
-				array(
-					'page_title' => 'Контент главной',
-					'menu_title' => 'Главная',
-					'menu_slug'  => 'studio-home',
-					'capability' => 'edit_posts',
-					'icon_url'   => 'dashicons-layout',
-					'position'   => 3,
-					'redirect'   => false,
-				)
-			);
-		}
+		register_post_type(
+			'project',
+			array(
+				'labels'       => array(
+					'name'          => 'Проекты',
+					'singular_name' => 'Проект',
+					'add_new_item'  => 'Добавить проект',
+					'edit_item'     => 'Редактировать проект',
+					'menu_name'     => 'Проекты',
+				),
+				'public'       => true,
+				'has_archive'  => true,
+				'menu_icon'    => 'dashicons-portfolio',
+				'menu_position' => 4,
+				'supports'     => array( 'title', 'editor', 'thumbnail', 'excerpt', 'page-attributes' ),
+				'rewrite'      => array( 'slug' => 'work' ),
+				'show_in_rest' => true,
+			)
+		);
 	}
 );
 
 /**
- * Группы полей.
+ * На странице-главной убираем редактор (контент собирается в SCF Flexible Content).
  */
+add_filter(
+	'use_block_editor_for_post',
+	function ( $use, $post ) {
+		if ( $post && (int) get_option( 'page_on_front' ) === (int) $post->ID ) {
+			return false;
+		}
+		return $use;
+	},
+	10,
+	2
+);
+
 add_action(
-	'acf/init',
+	'admin_init',
 	function () {
-		if ( ! function_exists( 'acf_add_local_field_group' ) ) {
+		$front = (int) get_option( 'page_on_front' );
+		if ( ! $front ) {
 			return;
 		}
-
-		// Work — карточки проектов (repeater).
-		acf_add_local_field_group(
-			array(
-				'key'      => 'group_studio_work',
-				'title'    => 'Главная — Work (проекты)',
-				'fields'   => array(
-					array(
-						'key'          => 'field_work_items',
-						'label'        => 'Проекты (карточки Work)',
-						'name'         => 'work_items',
-						'type'         => 'repeater',
-						'layout'       => 'block',
-						'button_label' => 'Добавить проект',
-						'sub_fields'   => array(
-							array(
-								'key'   => 'field_work_category',
-								'label' => 'Категория',
-								'name'  => 'category',
-								'type'  => 'text',
-							),
-							array(
-								'key'   => 'field_work_title',
-								'label' => 'Название',
-								'name'  => 'title',
-								'type'  => 'text',
-							),
-							array(
-								'key'           => 'field_work_art',
-								'label'         => 'Стиль обложки',
-								'name'          => 'art',
-								'type'          => 'select',
-								'choices'       => array(
-									'a1' => 'Вариант 1',
-									'a2' => 'Вариант 2',
-									'a3' => 'Вариант 3',
-								),
-								'default_value' => 'a1',
-							),
-						),
-					),
-				),
-				'location' => array(
-					array(
-						array(
-							'param'    => 'options_page',
-							'operator' => '==',
-							'value'    => 'studio-home',
-						),
-					),
-				),
-			)
-		);
+		$post_id = 0;
+		if ( isset( $_GET['post'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+			$post_id = (int) $_GET['post']; // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		}
+		if ( $post_id === $front ) {
+			remove_post_type_support( 'page', 'editor' );
+		}
 	}
 );

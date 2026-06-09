@@ -1,0 +1,247 @@
+[
+  {
+    "key": "group_home_sections",
+    "title": "Главная — конструктор (секции)",
+    "fields": [
+      {
+        "key": "field_sections",
+        "label": "Секции страницы",
+        "name": "sections",
+        "type": "flexible_content",
+        "button_label": "Добавить блок",
+        "layouts": {
+          "layout_hero": {
+            "key": "layout_hero",
+            "name": "hero",
+            "label": "Hero",
+            "display": "block",
+            "min": "",
+            "max": "",
+            "sub_fields": [
+              { "key": "field_hero_eyebrow", "label": "Надзаголовок", "name": "eyebrow", "type": "text" },
+              { "key": "field_hero_title", "label": "Заголовок (построчно)", "name": "title", "type": "textarea", "rows": 3 },
+              { "key": "field_hero_accent", "label": "Акцентное слово", "name": "accent", "type": "text" },
+              { "key": "field_hero_subtitle", "label": "Подзаголовок", "name": "subtitle", "type": "textarea", "rows": 2 },
+              { "key": "field_hero_cta_label", "label": "Кнопка (текст)", "name": "cta_label", "type": "text" },
+              { "key": "field_hero_available_label", "label": "Чип — заголовок", "name": "available_label", "type": "text" },
+              { "key": "field_hero_available_text", "label": "Чип — текст", "name": "available_text", "type": "text" },
+              {
+                "key": "field_hero_stats",
+                "label": "Статистика",
+                "name": "stats",
+                "type": "repeater",
+                "layout": "table",
+                "button_label": "Добавить пункт",
+                "sub_fields": [
+                  { "key": "field_hero_stat_number", "label": "Число", "name": "number", "type": "text" },
+                  { "key": "field_hero_stat_unit", "label": "Единица", "name": "unit", "type": "text" },
+                  { "key": "field_hero_stat_label", "label": "Подпись", "name": "label", "type": "text" }
+                ]
+              }
+            ]
+          },
+          "layout_marquee": {
+            "key": "layout_marquee",
+            "name": "marquee",
+            "label": "Бегущая строка",
+            "display": "block",
+            "min": "",
+            "max": "",
+            "sub_fields": [
+              {
+                "key": "field_marquee_items",
+                "label": "Пункты",
+                "name": "items",
+                "type": "repeater",
+                "layout": "table",
+                "button_label": "Добавить пункт",
+                "sub_fields": [
+                  { "key": "field_marquee_item", "label": "Текст", "name": "item", "type": "text" }
+                ]
+              }
+            ]
+          },
+          "layout_work": {
+            "key": "layout_work",
+            "name": "work",
+            "label": "Work (из проектов)",
+            "display": "block",
+            "min": "",
+            "max": "",
+            "sub_fields": [
+              { "key": "field_work_heading", "label": "Заголовок", "name": "heading", "type": "text" },
+              { "key": "field_work_accent", "label": "Акцентное слово", "name": "accent", "type": "text" },
+              { "key": "field_work_intro", "label": "Описание", "name": "intro", "type": "textarea", "rows": 2 },
+              { "key": "field_work_count", "label": "Сколько проектов показать", "name": "count", "type": "number", "default_value": 6 }
+            ]
+          },
+          "layout_about": {
+            "key": "layout_about",
+            "name": "about",
+            "label": "About",
+            "display": "block",
+            "min": "",
+            "max": "",
+            "sub_fields": [
+              { "key": "field_about_eyebrow", "label": "Надзаголовок", "name": "eyebrow", "type": "text" },
+              { "key": "field_about_lead", "label": "Лид", "name": "lead", "type": "textarea", "rows": 3 },
+              { "key": "field_about_body", "label": "Текст", "name": "body", "type": "wysiwyg", "media_upload": 0, "toolbar": "basic" },
+              {
+                "key": "field_about_tags",
+                "label": "Теги",
+                "name": "tags",
+                "type": "repeater",
+                "layout": "table",
+                "button_label": "Добавить тег",
+                "sub_fields": [
+                  { "key": "field_about_tag", "label": "Тег", "name": "tag", "type": "text" }
+                ]
+              }
+            ]
+          },
+          "layout_services": {
+            "key": "layout_services",
+            "name": "services",
+            "label": "Services",
+            "display": "block",
+            "min": "",
+            "max": "",
+            "sub_fields": [
+              { "key": "field_services_heading", "label": "Заголовок", "name": "heading", "type": "text" },
+              { "key": "field_services_accent", "label": "Акцентное слово", "name": "accent", "type": "text" },
+              { "key": "field_services_intro", "label": "Описание", "name": "intro", "type": "textarea", "rows": 2 },
+              {
+                "key": "field_services_cards",
+                "label": "Карточки услуг",
+                "name": "cards",
+                "type": "repeater",
+                "layout": "block",
+                "button_label": "Добавить услугу",
+                "sub_fields": [
+                  { "key": "field_service_title", "label": "Название", "name": "title", "type": "text" },
+                  { "key": "field_service_description", "label": "Описание", "name": "description", "type": "textarea", "rows": 2 },
+                  {
+                    "key": "field_service_tags",
+                    "label": "Теги",
+                    "name": "tags",
+                    "type": "repeater",
+                    "layout": "table",
+                    "button_label": "Добавить тег",
+                    "sub_fields": [
+                      { "key": "field_service_tag", "label": "Тег", "name": "tag", "type": "text" }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          "layout_process": {
+            "key": "layout_process",
+            "name": "process",
+            "label": "Process",
+            "display": "block",
+            "min": "",
+            "max": "",
+            "sub_fields": [
+              { "key": "field_process_heading", "label": "Заголовок", "name": "heading", "type": "text" },
+              { "key": "field_process_accent", "label": "Акцентное слово", "name": "accent", "type": "text" },
+              { "key": "field_process_intro", "label": "Описание", "name": "intro", "type": "textarea", "rows": 2 },
+              {
+                "key": "field_process_steps",
+                "label": "Шаги",
+                "name": "steps",
+                "type": "repeater",
+                "layout": "block",
+                "button_label": "Добавить шаг",
+                "sub_fields": [
+                  { "key": "field_process_step_title", "label": "Название", "name": "title", "type": "text" },
+                  { "key": "field_process_step_desc", "label": "Описание", "name": "description", "type": "textarea", "rows": 2 }
+                ]
+              }
+            ]
+          },
+          "layout_footer_cta": {
+            "key": "layout_footer_cta",
+            "name": "footer_cta",
+            "label": "Footer / CTA",
+            "display": "block",
+            "min": "",
+            "max": "",
+            "sub_fields": [
+              { "key": "field_fc_eyebrow", "label": "Надзаголовок", "name": "eyebrow", "type": "text" },
+              { "key": "field_fc_heading", "label": "Заголовок (построчно)", "name": "heading", "type": "textarea", "rows": 2 },
+              { "key": "field_fc_email", "label": "Email", "name": "email", "type": "text" },
+              {
+                "key": "field_fc_nav_links",
+                "label": "Ссылки навигации",
+                "name": "nav_links",
+                "type": "repeater",
+                "layout": "table",
+                "button_label": "Добавить ссылку",
+                "sub_fields": [
+                  { "key": "field_fc_nav_label", "label": "Текст", "name": "label", "type": "text" },
+                  { "key": "field_fc_nav_url", "label": "URL", "name": "url", "type": "text" }
+                ]
+              },
+              {
+                "key": "field_fc_socials",
+                "label": "Соцсети",
+                "name": "socials",
+                "type": "repeater",
+                "layout": "table",
+                "button_label": "Добавить соцсеть",
+                "sub_fields": [
+                  { "key": "field_fc_social_label", "label": "Текст", "name": "label", "type": "text" },
+                  { "key": "field_fc_social_url", "label": "URL", "name": "url", "type": "text" }
+                ]
+              }
+            ]
+          }
+        }
+      }
+    ],
+    "location": [
+      [
+        { "param": "page_type", "operator": "==", "value": "front_page" }
+      ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": ""
+  },
+  {
+    "key": "group_project",
+    "title": "Проект — поля",
+    "fields": [
+      { "key": "field_project_category", "label": "Категория", "name": "category", "type": "text", "instructions": "Например: Branding, Web · Motion" },
+      {
+        "key": "field_project_cover_style",
+        "label": "Стиль обложки",
+        "name": "cover_style",
+        "type": "select",
+        "choices": { "a1": "Вариант 1", "a2": "Вариант 2", "a3": "Вариант 3" },
+        "default_value": "a1",
+        "ui": 1,
+        "return_format": "value"
+      }
+    ],
+    "location": [
+      [
+        { "param": "post_type", "operator": "==", "value": "project" }
+      ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": ""
+  }
+]
