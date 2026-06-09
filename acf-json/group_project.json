@@ -1,0 +1,45 @@
+{
+    "key": "group_project",
+    "title": "Проект — поля",
+    "fields": [
+        {
+            "key": "field_project_category",
+            "label": "Категория",
+            "name": "category",
+            "type": "text",
+            "instructions": "Например: Branding, Web · Motion"
+        },
+        {
+            "key": "field_project_cover_style",
+            "label": "Стиль обложки",
+            "name": "cover_style",
+            "type": "select",
+            "choices": {
+                "a1": "Вариант 1",
+                "a2": "Вариант 2",
+                "a3": "Вариант 3"
+            },
+            "default_value": "a1",
+            "ui": 1,
+            "return_format": "value"
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "project"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "",
+    "modified": 1749470000
+}
